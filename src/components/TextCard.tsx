@@ -34,6 +34,9 @@ export const TextCard: React.FC<Props> = ({
   });
 
   const isBig = size === "big";
+  const bigTextLength = lines.join(" ").length;
+  const bigFontSize = bigTextLength <= 8 ? 132 : 88;
+  const bigLetterSpacing = bigTextLength <= 8 ? 14 : 5;
 
   return (
     <AbsoluteFill
@@ -69,9 +72,10 @@ export const TextCard: React.FC<Props> = ({
             style={{
               fontFamily: displayFont,
               fontWeight: isBig ? 700 : 600,
-              fontSize: isBig ? 132 : 60,
-              letterSpacing: isBig ? 14 : 0.5,
+              fontSize: isBig ? bigFontSize : 60,
+              letterSpacing: isBig ? bigLetterSpacing : 0.5,
               lineHeight: 1.35,
+              maxWidth: 900,
               color: isBig ? PALETTE.ember : PALETTE.cream,
               textShadow: "0 8px 30px rgba(0,0,0,0.6)",
             }}

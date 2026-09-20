@@ -22,7 +22,8 @@ export type CtaBeat = {
 export type Beat = TextBeat | ImageBeat | CtaBeat;
 
 // The trailer's spine: text cards and photos alternate like an adventure-novel
-// teaser, building to the archive reveal ("ENYA") before the CTA.
+// teaser. Enya (the protagonist) is introduced early; the archive scene later
+// builds to what he's really after — not a person, a direction for his life.
 export const BEATS: Beat[] = [
   {
     type: "text",
@@ -31,26 +32,32 @@ export const BEATS: Beat[] = [
   },
   {
     type: "image",
-    duration: 60,
+    duration: 55,
     src: "/images/ruins-street-walk.webp",
     direction: "in",
     objectPosition: "center 35%",
   },
   {
     type: "text",
-    duration: 60,
-    lines: ["un ragazzo non ha mai smesso", "di cercare."],
+    duration: 55,
+    lines: ["ENYA"],
+    size: "big",
+  },
+  {
+    type: "text",
+    duration: 50,
+    lines: ["non ha mai smesso di camminare."],
   },
   {
     type: "image",
-    duration: 55,
+    duration: 50,
     src: "/images/fountain-drink.webp",
     direction: "out",
     objectPosition: "center 40%",
   },
   {
     type: "image",
-    duration: 55,
+    duration: 50,
     src: "/images/childhood-home-doorstep.webp",
     direction: "in",
     objectPosition: "center 45%",
@@ -58,31 +65,31 @@ export const BEATS: Beat[] = [
   },
   {
     type: "text",
-    duration: 50,
+    duration: 48,
     lines: ["Ogni rovina nasconde un ricordo."],
   },
   {
     type: "image",
-    duration: 55,
+    duration: 50,
     src: "/images/newsstand-newspaper.webp",
     direction: "out",
     objectPosition: "center 40%",
   },
   {
     type: "image",
-    duration: 55,
+    duration: 50,
     src: "/images/campfire-reading.webp",
     direction: "in",
     objectPosition: "center 50%",
   },
   {
     type: "text",
-    duration: 55,
-    lines: ["Ma non è solo la memoria", "a guidarlo."],
+    duration: 50,
+    lines: ["Ma i ricordi non gli bastano più."],
   },
   {
     type: "image",
-    duration: 60,
+    duration: 55,
     src: "/images/archive-lighter-nati.webp",
     direction: "in",
     objectPosition: "center 42%",
@@ -90,25 +97,25 @@ export const BEATS: Beat[] = [
   },
   {
     type: "text",
-    duration: 45,
-    lines: ["Sta cercando un nome:"],
+    duration: 42,
+    lines: ["Cerca solo una cosa:"],
   },
   {
     type: "text",
-    duration: 60,
-    lines: ["ENYA"],
+    duration: 58,
+    lines: ["UNA DIREZIONE."],
     size: "big",
   },
   {
     type: "image",
-    duration: 60,
+    duration: 55,
     src: "/images/road-embrace.webp",
     direction: "out",
     objectPosition: "center 40%",
   },
   {
     type: "image",
-    duration: 55,
+    duration: 50,
     src: "/images/farmhouse-kneel-smile.webp",
     direction: "in",
     objectPosition: "center 45%",
@@ -116,7 +123,7 @@ export const BEATS: Beat[] = [
   },
   {
     type: "cta",
-    duration: 148,
+    duration: 157,
   },
 ];
 
