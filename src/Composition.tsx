@@ -1,3 +1,4 @@
+import React from "react";
 import { Composition } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
@@ -5,45 +6,48 @@ import {
   VIDEO_WIDTH,
   VIDEO_HEIGHT,
   VIDEO_FPS,
-  VIDEO_DURATION_IN_FRAMES,
   TRANSITION_FRAMES,
-  SCENE_DURATIONS,
 } from "./constants";
-import { Scene1Title } from "./scenes/Scene1Title";
-import { Scene2Diary } from "./scenes/Scene2Diary";
-import { Scene3Bond } from "./scenes/Scene3Bond";
-import { Scene4Journey } from "./scenes/Scene4Journey";
+import { BEATS, TOTAL_BEAT_FRAMES } from "./beats";
+import { TextCard } from "./components/TextCard";
+import { ImageBeatScene } from "./components/ImageBeatScene";
 import { Scene5CTA } from "./scenes/Scene5CTA";
 
-export const VideoPromozionale: React.FC = () => {
-  const transition = () => (
-    <TransitionSeries.Transition
-      presentation={fade()}
-      timing={linearTiming({ durationInFrames: TRANSITION_FRAMES })}
-    />
-  );
+const VIDEO_DURATION_IN_FRAMES =
+  TOTAL_BEAT_FRAMES - TRANSITION_FRAMES * (BEATS.length - 1);
 
+export const VideoPromozionale: React.FC = () => {
   return (
     <TransitionSeries>
-      <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.title}>
-        <Scene1Title />
-      </TransitionSeries.Sequence>
-      {transition()}
-      <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.diary}>
-        <Scene2Diary />
-      </TransitionSeries.Sequence>
-      {transition()}
-      <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.bond}>
-        <Scene3Bond />
-      </TransitionSeries.Sequence>
-      {transition()}
-      <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.journey}>
-        <Scene4Journey />
-      </TransitionSeries.Sequence>
-      {transition()}
-      <TransitionSeries.Sequence durationInFrames={SCENE_DURATIONS.cta}>
-        <Scene5CTA />
-      </TransitionSeries.Sequence>
+      {BEATS.map((beat, index) => (
+        <React.Fragment key={index}>
+          <TransitionSeries.Sequence durationInFrames={beat.duration}>
+            {beat.type === "text" && (
+              <TextCard
+                lines={beat.lines}
+                size={beat.size}
+                durationInFrames={beat.duration}
+              />
+            )}
+            {beat.type === "image" && (
+              <ImageBeatScene
+                src={beat.src}
+                durationInFrames={beat.duration}
+                direction={beat.direction}
+                objectPosition={beat.objectPosition}
+                panX={beat.panX}
+              />
+            )}
+            {beat.type === "cta" && <Scene5CTA />}
+          </TransitionSeries.Sequence>
+          {index < BEATS.length - 1 && (
+            <TransitionSeries.Transition
+              presentation={fade()}
+              timing={linearTiming({ durationInFrames: TRANSITION_FRAMES })}
+            />
+          )}
+        </React.Fragment>
+      ))}
     </TransitionSeries>
   );
 };
