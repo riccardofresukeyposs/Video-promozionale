@@ -39,7 +39,7 @@ const MusicBed: React.FC = () => {
         interpolate(
           f,
           [0, fps, fadeOutStart, durationInFrames],
-          [0, 0.35, 0.35, 0],
+          [0, 0.8, 0.8, 0],
           { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
         )
       }
@@ -72,6 +72,7 @@ export const StradeTrailerVideo: React.FC = () => {
           <AbsoluteFill style={{ backgroundColor: "#0a0705" }}>
             <OffthreadVideo
               src={staticFile("/video/strade1.mp4")}
+              muted
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </AbsoluteFill>
